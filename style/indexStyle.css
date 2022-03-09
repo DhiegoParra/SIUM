@@ -24,8 +24,8 @@ img
     background: white;
     font-size: 14px;
     font-weight: bold;
-    display:block;
-    margin:auto;
+    display: block;
+    margin: auto;
 }
 
 .buttons
@@ -35,7 +35,8 @@ img
     background: #017bab;
     border: none;
     color: white;
-    display:block;
     margin:auto;
+    display: block;
+    margin-top: 4px;
 }
    
