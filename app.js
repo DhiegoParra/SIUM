@@ -87,6 +87,9 @@ app.get('/logout', function (req, res) {
 	})
 });
 
+
+
+
 //Abrir servidor en puerto 3000
 app.listen(3000, (req, res)=>{
     console.log('SERVER RUNNING IN http://localhost:3000/login');
