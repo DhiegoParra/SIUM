@@ -5,7 +5,7 @@ const router = express.Router();
 //Llamada a módulo base de datos
 const conexion = require('./database/db');
 
-//Mostratodos los registros
+//Mostrar todos los registros
 router.get('/', (req, res)=>{
     conexion.query('SELECT * FROM fardo', (error, results)=>{
         if(error){
@@ -16,13 +16,28 @@ router.get('/', (req, res)=>{
     })
 })
 
-//Crear todos los registros
+//Ruta crear los registros
 router.get('/create', (req, res)=>{
     res.render('create');
+})
+
+//Ruta editar los registros
+router.get('/edit/:id', (req, res)=>{
+    //Recibir el id
+    const id = req.params.id;
+    //Seleciona de fardo lo capturado en ID
+    conexion.query('SELECT * FROM fardo WHERE id=?', [id], (error, results)=>{
+        if(error){
+            throw error;
+        }else{
+            res.render('edit', {fardo:results[0]});
+        }
+    })
 })
 
 //Llamar al CRUD
 const crud = require('./controllers/crud');
 router.post('/save', crud.save);
+router.post('/update', crud.update);
 
 module.exports = router;
