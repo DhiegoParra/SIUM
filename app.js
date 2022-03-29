@@ -4,19 +4,17 @@ const app = express();
 //Dependencias secundarias
 const dotenv = require('dotenv');
 dotenv.config({path:'./env/.env'})
-const bcryptjs = require('bcryptjs');
 
 //Seteo de encoded para capturar datos de formulario
 app.use(express.urlencoded({extended:false}));
+//Le decimos que usaremos JSON
 app.use(express.json());
 
 //Directorio publico
 app.use('/resources', express.static('public'));
 app.use('/resources', express.static(__dirname + '/public'));
 
-console.log(__dirname);
-
-//Establecer motor de plantilla
+//Establecer motor de plantilla ejs
 app.set('view engine', 'ejs');
 
 //Variable de sesión
@@ -31,9 +29,17 @@ app.use(sesion({
 const connection = require('./database/db')
 
 //Estableciendo las rutas
-app.get('/login', (req, res)=>{
-    res.render('login');
-})
+//app.get('/login', (req, res)=>{
+//    res.render('login');
+//})
+
+//Conexion a Modulo Stock
+//app.get('/stock', (req,res)=>{
+//	res.render('stock');
+//})
+
+//Importar router
+app.use('/', require('./router'));
 
 //Login
 app.post('/auth', function(request, response) {
@@ -57,7 +63,6 @@ app.post('/auth', function(request, response) {
 			response.end();
 		});
 	} else {
-        console.log(username + ' ' + password);
 		response.send('Please enter Username and Password!');
 		response.end();
 	}
@@ -87,10 +92,7 @@ app.get('/logout', function (req, res) {
 	})
 });
 
-
-
-
 //Abrir servidor en puerto 3000
 app.listen(3000, (req, res)=>{
-    console.log('SERVER RUNNING IN http://localhost:3000/login');
+    console.log('SERVER RUNNING IN http://localhost:3000');
 })
