@@ -49,6 +49,15 @@ router.get('/delete/:id', (req, res)=>{
     })
 })
 
+//Ruta para llamar al login
+router.get('/login', (req, res)=>{
+   res.render('login');
+})
+
+//Ruta para llamar al index (selección de módulo)
+router.get('/index', (req, res)=>{
+    res.render('index');
+ })
 
 //Llamar al CRUD
 const crud = require('./controllers/crud');
