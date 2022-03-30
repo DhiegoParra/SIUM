@@ -31,7 +31,6 @@
             <tbody>
                 <% results.forEach((fardo)=> { %>
                 <tr>
-                    <td> <%= fardo.id %></td>
                     <td> <%= fardo.nombre %></td>
                     <td> <%= fardo.precio %></td>
                     <td> <%= fardo.cantidad  %></td>
@@ -40,7 +39,7 @@
                     <td> <%= fardo.volumen %></td>
                     <td> 
                         <a href="/edit/<%= fardo.id %>" class="btn btn-outline-primary mt-4"><i class='bx bx-edit-alt bx-md'></i></a>
-                        <a href="/create.ejs" class="btn btn-outline-primary mt-4"><i class='bx bx-trash bx-md' ></i></a>
+                        <a href="/delete/<%= fardo.id %>" class="btn btn-outline-primary mt-4"><i class='bx bx-trash bx-md' ></i></a>
                     </td>
                 </tr>
                 <% }) %>
