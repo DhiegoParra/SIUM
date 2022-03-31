@@ -57,7 +57,11 @@ router.get('/login', (req, res)=>{
 //Ruta para llamar al index (selección de módulo)
 router.get('/index', (req, res)=>{
     res.render('index');
- })
+})
+
+//Mostrar todas las finanzas
+
+
 
 //Llamar al CRUD
 const crud = require('./controllers/crud');
