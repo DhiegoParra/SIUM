@@ -5,8 +5,18 @@ const router = express.Router();
 //Llamada a módulo base de datos
 const conexion = require('./database/db');
 
-//Mostrar todos los registros
+//Ruta para llamar al login
 router.get('/', (req, res)=>{
+    res.render('login');
+ })
+
+//Ruta para llamar al index (selección de módulo)
+router.get('/index', (req, res)=>{
+    res.render('index');
+})
+
+//Mostrar todos los registros (modulo stock)
+router.get('/stock', (req, res)=>{
     conexion.query('SELECT * FROM fardo', (error, results)=>{
         if(error){
             throw error;
@@ -16,12 +26,12 @@ router.get('/', (req, res)=>{
     })
 })
 
-//Ruta crear los registros
+//Ruta crear los registros (modulo stock)
 router.get('/create', (req, res)=>{
     res.render('create');
 })
 
-//Ruta editar los registros
+//Ruta editar los registros (modulo stock)
 router.get('/edit/:id', (req, res)=>{
     //Recibir el id
     const id = req.params.id;
@@ -35,7 +45,7 @@ router.get('/edit/:id', (req, res)=>{
     })
 })
 
-//Ruta para eliminar registro
+//Ruta para eliminar registro (modulo stock)
 router.get('/delete/:id', (req, res)=>{
     //Recibir el id
     const id = req.params.id;
@@ -49,20 +59,21 @@ router.get('/delete/:id', (req, res)=>{
     })
 })
 
-//Ruta para llamar al login
-router.get('/login', (req, res)=>{
-   res.render('login');
-})
-
-//Ruta para llamar al index (selección de módulo)
-router.get('/index', (req, res)=>{
-    res.render('index');
-})
-
 //Mostrar todas las finanzas
+router.get('/finance', (req, res)=>{
+    res.render('finance')
+    // conexion.query('SELECT * FROM finanzas', (error, results)=>{
+    //     if(error){
+    //         throw error;
+    //     }else{
+    //         res.render('finance', {results:results});
+    //     }
+    // })
+})
 
 
 
+//INTOCABLE//
 //Llamar al CRUD
 const crud = require('./controllers/crud');
 router.post('/save', crud.save);
