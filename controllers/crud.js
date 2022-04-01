@@ -1,6 +1,6 @@
 const conexion = require('../database/db');
 
-//Controlador para crear un nuevo fardo
+//Controlador para crear un nuevo fardo (modulo stock)
 exports.save = (req, res)=>{
     const nombre = req.body.nombre;
     const precio = req.body.precio;
@@ -17,7 +17,7 @@ exports.save = (req, res)=>{
     })
 }
 
-//Controlador para editar un fardo
+//Controlador para editar un fardo (modulo stock)
 exports.update = (req, res)=>{
     const id = req.body.id;
     const nombre = req.body.nombre;
@@ -31,6 +31,19 @@ exports.update = (req, res)=>{
             console.log(error);
         }else{
             res.redirect('/');
+        }
+    })
+}
+
+//Controlador venta de un fardo (modulo stock)
+exports.update = (req, res)=>{
+    const id = req.body.id;
+    const cantidad = req.body.cantidad;
+    conexion.query('UPDATE fardo SET ? WHERE id = ?', [{cantidad:cantidad},id], (error, results)=>{
+        if(error){
+            console.log(error);
+        }else{
+            res.redirect('/stock');
         }
     })
 }

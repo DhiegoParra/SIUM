@@ -54,10 +54,25 @@ router.get('/delete/:id', (req, res)=>{
         if(error){
             throw error;
         }else{
-            res.redirect('/');
+            res.redirect('/stock');
         }
     })
 })
+
+//Ruta vender fardos (modulo stock)
+router.get('/sale/:id', (req, res)=>{
+    //Recibir el id
+    const id = req.params.id;
+    //Seleciona de fardo lo capturado en ID
+    conexion.query('SELECT * FROM fardo WHERE id=?', [id], (error, results)=>{
+        if(error){
+            throw error;
+        }else{
+            res.render('sale', {fardo:results[0]});
+        }
+    })
+})
+
 
 //Mostrar todas las finanzas
 router.get('/finance', (req, res)=>{
@@ -70,7 +85,6 @@ router.get('/finance', (req, res)=>{
     //     }
     // })
 })
-
 
 
 //INTOCABLE//
