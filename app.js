@@ -28,18 +28,10 @@ app.use(sesion({
 //Invocar al modulo de conexion
 const connection = require('./database/db')
 
-//Estableciendo las rutas
-//app.get('/login', (req, res)=>{
-//    res.render('login');
-//})
-
-//Conexion a Modulo Stock
-//app.get('/stock', (req,res)=>{
-//	res.render('stock');
-//})
 
 //Importar router
-app.use('/', require('./router'));
+//app.use('/', require('./router'));
+app.use(require('./router'));
 
 //Login
 app.post('/auth', function(request, response) {
@@ -49,14 +41,14 @@ app.post('/auth', function(request, response) {
 	// Ensure the input fields exists and are not empty
 	if (username && password) {
 		// Execute SQL query that'll select the account from the database based on the specified username and password
-		connection.query('SELECT * FROM usuario WHERE rut = ? AND contrasena = ?', [username, password], function(error, results, fields) {
+		connection.query('SELECT * FROM usuario WHERE rut = ? AND contrasena = ?', [username, password], function(error, results, fields){
 			// If there is an issue with the query, output the error
 			if (error) throw error;
 			// If the account exists
 			if (results.length > 0) {
 				// Redirect to home page
                 request.session.loggedin = true;
-				response.redirect('/');
+				response.redirect('/index');
 			} else {
 				response.send('Incorrect Username and/or Password!');
 			}			
@@ -68,29 +60,7 @@ app.post('/auth', function(request, response) {
 	}
 });
 
-//Autenticacion
-app.get('/', (req, res)=> {
-	if (req.session.loggedin) {
-		res.render('index',{
-			login: true,
-			name: req.session.name			
-		});		
-	} else {
-		res.render('index',{
-			login:false,
-			name:'Debe iniciar sesión',			
-		});				
-	}
-	res.end();
-});
 
-//Logout
-//Destruye la sesión.
-app.get('/logout', function (req, res) {
-	req.session.destroy(() => {
-	  res.redirect('/') // siempre se ejecutará después de que se destruya la sesión
-	})
-});
 
 //Abrir servidor en puerto 3000
 app.listen(3000, (req, res)=>{
