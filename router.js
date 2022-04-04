@@ -117,8 +117,10 @@ router.get('/delete/:id', (req, res)=>{
 
 //Ruta vender fardos (modulo stock)
 router.get('/sale/:id', (req, res)=>{
-    //Recibir el id
+    //Recibir el id, precio, cantidad
     const id = req.params.id;
+    const cantidad = req.params.cantidad;
+    const precio = req.params.precio;
     //Seleciona de fardo lo capturado en ID
     conexion.query('SELECT * FROM fardo WHERE id=?', [id], (error, results)=>{
         if(error){
