@@ -132,19 +132,43 @@ router.get('/sale/:id', (req, res)=>{
 })
 
 
-//Mostrar todas las finanzas (falta agregar la auth acá)
+//Ruta modulo finanzas con auth
 router.get('/finance', (req, res)=>{
-    res.render('finance')
-    // conexion.query('SELECT * FROM finanzas', (error, results)=>{
-    //     if(error){
-    //         throw error;
-    //     }else{
-    //         res.render('finance', {results:results});
-    //     }
-    // })
+    conexion.query('SELECT * FROM finanzas', (error, results)=>{
+        if(error){
+            throw error;
+        }else{
+            if (req.session.loggedin) {
+                res.render('finance', {results:results});		
+            } else {
+                res.render('nologin',{
+                    login:false,
+                    name:'Debe iniciar sesión',			
+                });				
+            }
+            res.end();
+        }
+    })
 })
 
-
+//Ruta historial finanzas con auth
+router.get('/record', (req, res)=>{
+    conexion.query('SELECT * FROM finanzas', (error, results)=>{
+        if(error){
+            throw error;
+        }else{
+            if (req.session.loggedin) {
+                res.render('record', {results:results});		
+            } else {
+                res.render('nologin',{
+                    login:false,
+                    name:'Debe iniciar sesión',			
+                });				
+            }
+            res.end();
+        }
+    })
+})
 //INTOCABLE//
 //Llamar al CRUD
 const crud = require('./controllers/crud');
