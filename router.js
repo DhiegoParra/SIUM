@@ -5,30 +5,86 @@ const router = express.Router();
 //Llamada a módulo base de datos
 const conexion = require('./database/db');
 
-//Ruta para llamar al login
+
+//Ruta para llamar al login (home page)
 router.get('/', (req, res)=>{
     res.render('login');
  })
 
 //Ruta para llamar al index (selección de módulo)
-router.get('/index', (req, res)=>{
-    res.render('index');
-})
+// router.get('/index', (req, res)=>{
+//     res.render('index');
+// })
 
-//Mostrar todos los registros (modulo stock)
+//Ruta Index con auth
+router.get('/index', (req, res)=> {
+	if (req.session.loggedin) {
+		res.render('index',{
+			login: true,
+			name: req.session.name			
+		});		
+	} else {
+		res.render('nologin',{
+			login:false,
+			name:'Debe iniciar sesión',			
+		});				
+	}
+	res.end();
+});
+
+
+//Logout
+//Destruye la sesión.
+router.get('/logout', function (req, res) {
+	req.session.destroy(() => {
+	  res.redirect('/') // siempre se ejecutará después de que se destruya la sesión
+	})
+});
+
+//Ruta modulo stock con auth
 router.get('/stock', (req, res)=>{
     conexion.query('SELECT * FROM fardo', (error, results)=>{
         if(error){
             throw error;
         }else{
-            res.render('stock', {results:results});
+            if (req.session.loggedin) {
+                res.render('stock', {results:results});		
+            } else {
+                res.render('nologin',{
+                    login:false,
+                    name:'Debe iniciar sesión',			
+                });				
+            }
+            res.end();
         }
     })
 })
 
-//Ruta crear los registros (modulo stock)
+//Mostrar todos los registros (modulo stock)
+// router.get('/stock', (req, res)=>{
+//     conexion.query('SELECT * FROM fardo', (error, results)=>{
+//         if(error){
+//             throw error;
+//         }else{
+//             res.render('stock', {results:results});
+//         }
+//     })
+// })
+
+//Ruta crear los registros (modulo stock) con auth
 router.get('/create', (req, res)=>{
-    res.render('create');
+    if (req.session.loggedin) {
+		res.render('create',{
+			login: true,
+			name: req.session.name			
+		});		
+	} else {
+		res.render('nologin',{
+			login:false,
+			name:'Debe iniciar sesión',			
+		});				
+	}
+	res.end();
 })
 
 //Ruta editar los registros (modulo stock)
@@ -76,7 +132,7 @@ router.get('/sale/:id', (req, res)=>{
 })
 
 
-//Mostrar todas las finanzas
+//Mostrar todas las finanzas (falta agregar la auth acá)
 router.get('/finance', (req, res)=>{
     res.render('finance')
     // conexion.query('SELECT * FROM finanzas', (error, results)=>{

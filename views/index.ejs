@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seleccion de Modulo</title>
+    <title>SIUM</title>
     <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
-    <h1>Seleccion de Modulo</h1>
-    <a href="stock" > Módulo Stock</a>
-    <a href="finance" > Módulo Finanzas</a>
-
+    <h1>Selección de Módulo</h1>
+    <form action="\stock">
+        <input type="submit" class="btn-NOlogin" value="Ir a Stock">
+    </form>
+    <br>
+    <form action="\finance">
+        <input type="submit" class="btn-NOlogin" value="Ir a Finanzas">
+    </form>
+    <br><br>
     <% if (login) { %>                                       
-        <a href="logout" class="a-logout">Cerrar Sesión</a>
+        <form action="\logout">
+            <input type="submit" class="btn-salir" value="Cerrar Sesión">
+        </form>
     <%} else { %>  
         <a href="login" class="a-login">Ir a Login</a>
     <% } %>
