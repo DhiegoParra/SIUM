@@ -10,12 +10,34 @@
     <!-- Box Icons -->
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <title> Historial Finanzas</title>
+    <style>
+      .topnav input[type=text] {
+          float: right;
+          padding: 6px;
+          border: none;
+          margin-top: 8px;
+          margin-right: 16px;
+          margin-bottom: 8px;
+          font-size: 17px;
+      }
+      .topnav a.active {
+          background-color: #2196F3;
+          color: white;
+      }
+      .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+      }
+    </style>
   </head>
   <body>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <div class="container">
         <h1> Historial Finanzas</h1>
+        <div class="topnav">
+          <input type="text" placeholder="Filtrar">
+        </div>
         <table class="table table-bordered table-striped text-center mt-4">
             <thead>
                 <tr class="text-white" style="background-color:#017bab;">
