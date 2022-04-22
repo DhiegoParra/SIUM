@@ -98,8 +98,8 @@ router.get('/edit/:id', (req, res)=>{
         }else{
             res.render('edit', {fardo:results[0]});
         }
-    })
-})
+    });
+});
 
 //Ruta para eliminar registro (modulo stock)
 router.get('/delete/:id', (req, res)=>{

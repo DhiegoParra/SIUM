@@ -12,7 +12,7 @@ exports.save = (req, res)=>{
         if(error){
             console.log(error);
         }else{
-            res.redirect('/');
+            res.redirect('/stock');
         }
     })
 }
@@ -26,11 +26,11 @@ exports.update = (req, res)=>{
     const categoria = req.body.categoria;
     const peso = req.body.peso;
     const volumen = req.body.volumen;
-    conexion.query('UPDATE fardo SET ? WHERE id = ?', [{nombre:nombre, precio:precio, cantidad:cantidad, categoria:categoria, peso:peso, volumen:volumen},id], (error, results)=>{
+    conexion.query('UPDATE fardo SET ? WHERE id = ?', [{nombre:nombre, precio:precio, cantidad:cantidad, categoria:categoria, peso:peso, volumen:volumen}, id], (error, results)=>{
         if(error){
             console.log(error);
         }else{
-            res.redirect('/');
+            res.redirect('/stock');
         }
     })
 }
