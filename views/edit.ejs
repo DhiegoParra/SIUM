@@ -33,8 +33,11 @@
                           <input type="text" class="form-control" id="cantidad" name="cantidad" tabindex="1" value="<%= fardo.cantidad %>">
                         </div>  
                         <div class="mb-3">
-                          <label for="Nombre" class="form-label">Categoria</label>
-                          <input type="text" class="form-control" id="categoria" name="categoria" tabindex="1" value="<%= fardo.categoria  %>">
+                          <label for="rol" class="form-label">Rol</label>
+                          <select id="categoria" name="categoria" class="form-select"  value="" tabindex="2">
+                            <option <%- fardo.categoria=='primera' ? "selected" : "" %> value="Primera">Primera</option>
+                            <option <%- fardo.categoria=='segunda' ? "selected" : "" %> value="Segunda">Segunda</option>
+                          </select>
                         </div>    
                         <div class="mb-3">
                           <label for="Nombre" class="form-label">Peso</label>
