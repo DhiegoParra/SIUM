@@ -18,9 +18,21 @@
             <div class="card border-secondary">  
                 <div class="card-header"> ¿Cúantos Fardos Se Vendieron? </div>
                 <div class="card-body">
-                    <form action="/update" method="POST">
+                    <form action="/venta" method="POST">
                         <input id="id" name="id" value="<%= fardo.id %>" hidden>
+                        <input id="precio" name="precio" value="<%= fardo.precio %>" hidden>
+                        <input id="cantog" name="cantog" value="<%= fardo.cantidad %>" hidden>
+                        <input id="nombre" name="nombre" value="<%= fardo.nombre %>" hidden>
+                        <input id="categoria" name="categoria" value="<%= fardo.categoria %>" hidden>
+                        <input id="peso" name="peso" value="<%= fardo.peso %>" hidden>
+                        <input id="volumen" name="volumen" value="<%= fardo.volumen %>" hidden>
+                        
+                        <input id="fecha" name="fecha" value="<%= finanzas.fecha %>" hidden>
+                        <input id="dinerofardo" name="dinerofardo" value="<%= finanzas.dinerofardo %>" hidden>
+                        <input id="totalmensual" name="totalmensual" value="<%= finanzas.totalmensual %>" hidden>
+                        <input id="gananciadiaria" name="gananciadiaria" value="<%= finanzas.gananciadiaria %>" hidden>
                         <div class="mb-3">
+                       
                           <div class="mb-3">
                             <label for="Nombre" class="form-label">Cantidad</label>
                             <input type="text" class="form-control" id="cantidad" name="cantidad" tabindex="1" value="<%= fardo.cantidad %>">

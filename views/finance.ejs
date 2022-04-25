@@ -16,55 +16,26 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <div class="container">
         <h1> Módulo Finanzas</h1>
-        <a href="/record" class="btn btn-outline-primary mt-4"><i class='bx bxs-calendar bx-md'></i></a>       
-        <table class="table table-bordered table-striped text-center mt-4">
+        <a href="/record" class="btn btn-outline-primary mt-4"><i class='bx bxs-calendar bx-md'></i></a>
+        <table id="finanzas" class="table table-bordered table-striped text-center mt-4">
             <thead>
                 <tr class="text-white" style="background-color:#017bab;">
-                    <th scope="col">Fecha</th>           
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Ganancia de Hoy</th>            
+                    <th scope="col">Ganancias del Mes</th>
+                    <th scope="col">Valor Actual de la Bodega</th>            
                 </tr>
             </thead>
             <tbody>
                 <% results.forEach((finanzas)=> { %>
                 <tr>
                     <td> <%= finanzas.fecha %></td>
-                </tr>
-                <% }) %>
-            </tbody>
-            <thead>
-                <tr class="text-white" style="background-color:#017bab;">       
-                    <th scope="col">Ganacia de Hoy</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% results.forEach((finanzas)=> { %>
-                <tr>
                     <td> <%= finanzas.gananciadiaria %></td>
-                </tr>
-                <% }) %>
-            </tbody>
-            <thead>
-                <tr class="text-white" style="background-color:#017bab;">       
-                    <th scope="col">Ganancia en el mes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% results.forEach((finanzas)=> { %>
-                <tr>
                     <td> <%= finanzas.totalmensual  %></td>
-                </tr>
-                <% }) %>
-            </tbody>
-            <thead>
-                <tr class="text-white" style="background-color:#017bab;">       
-                    <th scope="col">Valor Actual de la Bodega</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% results.forEach((finanzas)=> { %>
-                <tr>
                     <td> <%= finanzas.dinerofardo %></td>
                 </tr>
                 <% }) %>
+                <a href="/index" class="btn btn-outline-primary mt-4"><i class='bx bx-arrow-back bx-md' ></i></a>
             </tbody>
         </table>
     </div>

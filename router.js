@@ -119,14 +119,20 @@ router.get('/delete/:id', (req, res)=>{
 router.get('/sale/:id', (req, res)=>{
     //Recibir el id, precio, cantidad
     const id = req.params.id;
-    const cantidad = req.params.cantidad;
-    const precio = req.params.precio;
+    const fecha = new Date();
+    fecha.setHours(0,0,0,0);
     //Seleciona de fardo lo capturado en ID
-    conexion.query('SELECT * FROM fardo WHERE id=?', [id], (error, results)=>{
+    conexion.query('SELECT * FROM fardo WHERE id=?', [id], (error, resfardo)=>{
         if(error){
             throw error;
         }else{
-            res.render('sale', {fardo:results[0]});
+            conexion.query('SELECT * FROM finanzas WHERE fecha=?', [fecha], (error, results)=>{
+                if(error){
+                    throw error;
+                }else{
+                    res.render('sale', {fardo:resfardo[0],finanzas:results[0]})
+                }
+            })
         }
     })
 })
@@ -134,6 +140,8 @@ router.get('/sale/:id', (req, res)=>{
 
 //Ruta modulo finanzas con auth
 router.get('/finance', (req, res)=>{
+    const fecha = new Date();
+    fecha.setHours(0,0,0,0);
     conexion.query('SELECT * FROM finanzas', (error, results)=>{
         if(error){
             throw error;
@@ -174,5 +182,6 @@ router.get('/record', (req, res)=>{
 const crud = require('./controllers/crud');
 router.post('/save', crud.save);
 router.post('/update', crud.update);
+router.post('/venta', crud.venta);
 
 module.exports = router;
