@@ -142,12 +142,12 @@ router.get('/sale/:id', (req, res)=>{
 router.get('/finance', (req, res)=>{
     const fecha = new Date();
     fecha.setHours(0,0,0,0);
-    conexion.query('SELECT * FROM finanzas', (error, results)=>{
+    conexion.query('SELECT * FROM finanzas WHERE fecha=?',[fecha], (error, results)=>{
         if(error){
             throw error;
         }else{
             if (req.session.loggedin) {
-                res.render('finance', {results:results});		
+                res.render('finance', {finanzas:results[0]});		
             } else {
                 res.render('nologin',{
                     login:false,

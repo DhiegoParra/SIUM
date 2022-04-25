@@ -17,27 +17,51 @@
     <div class="container">
         <h1> Módulo Finanzas</h1>
         <a href="/record" class="btn btn-outline-primary mt-4"><i class='bx bxs-calendar bx-md'></i></a>
-        <table id="finanzas" class="table table-bordered table-striped text-center mt-4">
-            <thead>
-                <tr class="text-white" style="background-color:#017bab;">
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Ganancia de Hoy</th>            
-                    <th scope="col">Ganancias del Mes</th>
-                    <th scope="col">Valor Actual de la Bodega</th>            
-                </tr>
-            </thead>
-            <tbody>
-                <% results.forEach((finanzas)=> { %>
-                <tr>
-                    <td> <%= finanzas.fecha %></td>
-                    <td> <%= finanzas.gananciadiaria %></td>
-                    <td> <%= finanzas.totalmensual  %></td>
-                    <td> <%= finanzas.dinerofardo %></td>
-                </tr>
-                <% }) %>
-                <a href="/index" class="btn btn-outline-primary mt-4"><i class='bx bx-arrow-back bx-md' ></i></a>
-            </tbody>
-        </table>
+        <a href="/index" class="btn btn-outline-primary mt-4"><i class='bx bx-arrow-back bx-md' ></i></a>
+                <table id="finanzas" class="table table-bordered table-striped text-center mt-4">
+                  <thead>
+                      <tr class="text-white" style="background-color:#017bab;">
+                          <th scope="col">Fecha</th>          
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td> <%= finanzas.fecha %></td>
+                      </tr>
+                    </table>
+                      <table id="finanzas" class="table table-bordered table-striped text-center mt-4">
+                        <thead>
+                            <tr class="text-white" style="background-color:#017bab;">
+                                <th scope="col">Ganancia de Hoy</th>          
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> <%= finanzas.gananciadiaria %></td>
+                            </tr>
+                          </table>
+                          <table id="finanzas" class="table table-bordered table-striped text-center mt-4">
+                            <thead>
+                                <tr class="text-white" style="background-color:#017bab;">
+                                    <th scope="col">Ganancia del Mes</th>          
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> <%= finanzas.totalmensual %></td>
+                                </tr>
+                              </table>
+                              <table id="finanzas" class="table table-bordered table-striped text-center mt-4">
+                                <thead>
+                                    <tr class="text-white" style="background-color:#017bab;">
+                                        <th scope="col">Valor Actual del Stock en Bodega</th>          
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td> <%= finanzas.dinerofardo %></td>
+                                    </tr>
+                                  </table>
     </div>
   </body>
 </html>
