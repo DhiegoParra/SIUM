@@ -1,5 +1,5 @@
 # SIUM
-Trabajo de tesis, sistema de Stock y finanzas
+Thesis work, Stock system and finances for ESLAM
 
 # How to instal
 
